@@ -1,5 +1,7 @@
 package cn.onenine.springframework.bean;
 
+import org.junit.BeforeClass;
+
 /**
  * Description：用户服务
  *
@@ -9,8 +11,24 @@ package cn.onenine.springframework.bean;
  */
 public class UserService {
 
-    public String queryUserInfo(){
-        return "查询用户信息为 : " + "壹玖";
+    private String name;
+
+    public UserService(){
+        name = "无名氏";
     }
 
+    public UserService(String name) {
+        this.name = name;
+    }
+
+    public String queryUserInfo() {
+        return "查询用户信息为 : " + name;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("");
+        sb.append(name);
+        return sb.toString();
+    }
 }
