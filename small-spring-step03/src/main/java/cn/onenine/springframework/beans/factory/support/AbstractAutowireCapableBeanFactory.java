@@ -12,7 +12,7 @@ import java.lang.reflect.Constructor;
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
 
-    private InstantiationStrategy instantiationStrategy = new CglibInstantiationStrategy();
+    private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
 
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
@@ -50,6 +50,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     private InstantiationStrategy getInstantiationStrategy() {
+        System.out.println("[AbstractAutowireCapableBeanFactory]use ：" + instantiationStrategy.getClass().getSimpleName() + " instantiate strategy..");
         return instantiationStrategy;
     }
 
