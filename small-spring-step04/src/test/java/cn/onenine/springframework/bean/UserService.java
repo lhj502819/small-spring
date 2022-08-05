@@ -1,6 +1,6 @@
 package cn.onenine.springframework.bean;
 
-import org.junit.BeforeClass;
+import cn.onenine.springframework.dao.UserDao;
 
 /**
  * Description：用户服务
@@ -11,24 +11,27 @@ import org.junit.BeforeClass;
  */
 public class UserService {
 
-    private String name;
+    private String uId;
 
-    public UserService(){
-        name = "无名氏";
+    private UserDao userDao;
+
+    public void queryUserInfo(){
+        System.out.println("查询用户信息：" + userDao.queryUserName(uId));
     }
 
-    public UserService(String name) {
-        this.name = name;
+    public String getuId() {
+        return uId;
     }
 
-    public String queryUserInfo() {
-        return "查询用户信息为 : " + name;
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append(name);
-        return sb.toString();
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

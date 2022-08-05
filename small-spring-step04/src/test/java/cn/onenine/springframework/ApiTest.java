@@ -2,8 +2,12 @@ package cn.onenine.springframework;
 
 import cn.onenine.springframework.bean.UserService;
 import cn.onenine.springframework.beans.factory.BeanFactory;
+import cn.onenine.springframework.beans.factory.PropertyValue;
+import cn.onenine.springframework.beans.factory.PropertyValues;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
+import cn.onenine.springframework.beans.factory.config.BeanReference;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
+import cn.onenine.springframework.dao.UserDao;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
@@ -21,24 +25,22 @@ public class ApiTest {
         //1.初始化BeanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        //2.注册bean
-        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
-        beanFactory.registerBeanDefinition("userService", beanDefinition);
+        //2.UserDao注册
+        beanFactory.registerBeanDefinition("userDao" , new BeanDefinition(UserDao.class));
 
-        //3.第一次获取bean
-        UserService userService = (UserService) beanFactory.getBean("userService", "壹玖");
-        System.out.println(userService.queryUserInfo());
+        //3.UserService设置属性[uId，userDao]
+        PropertyValues propertyValues = new PropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("uId" , "1002"));
+        propertyValues.addPropertyValue(new PropertyValue("userDao" , new BeanReference("userDao")));
 
+        //4.UserService注入Bean
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class, propertyValues);
+        beanFactory.registerBeanDefinition("userService" , beanDefinition);
+
+        //5.获取UserService Bean
+        UserService userService = (UserService) beanFactory.getBean("userService");
+        userService.queryUserInfo();
     }
 
-    @Test
-    public void test_parameterTypes() throws Exception {
-        Class<UserService> beanClass = UserService.class;
-        Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
-        Constructor<?> declaredConstructor = declaredConstructors[1];
-        Constructor<UserService> constructor = beanClass.getDeclaredConstructor(declaredConstructor.getParameterTypes());
-        UserService userService = constructor.newInstance("壹玖");
-        System.out.println(userService.queryUserInfo());
-    }
 
 }
