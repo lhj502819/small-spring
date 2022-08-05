@@ -1,4 +1,4 @@
-## 增加功能
+# 增加功能
 实现Bean的定义、注册、和获取
 - `BeanDefinitionRegistry`定义了注册BeanDefinition的行为
 - `SingletonBeanRegistry`定义获取单例Bean的方法
@@ -7,5 +7,5 @@
 - `AbstractAutowireCapableBeanFactory` 继承了`AbstractBeanFactory`，提供创建Bean实例的实现
 - `DefaultListableBeanFactory` 继承了`AbstractAutowireCapableBeanFactory`，实现了`BeanDefinitionRegistry`的注册Bean定义接口，提供单例Bean的获取
 
-## 缺点
+# 缺点
 实例化Bean不支持带参数构造方法
