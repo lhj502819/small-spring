@@ -7,10 +7,10 @@ package cn.onenine.springframework.core.io;
  * @email lhj502819@163.com
  * @since 2022/8/9 21:39
  */
-public interface ResourceLoader extends Resource {
+public interface ResourceLoader {
+
     String CLASSPATH_URL_PREFIX = "classpath:";
 
-
-
+    Resource getResource(String location);
 
 }
