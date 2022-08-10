@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beas>
+
+    <bean id="userDao" class="cn.onenine.springframework.dao.UserDao" />
+
+    <bean id="userService" class="cn.onenine.springframework.bean.UserService" >
+        <property name="userDao" ref="userDao" />
+    </bean>
+
+</beas>

@@ -20,8 +20,8 @@ public class FileSystemResource implements Resource{
         this.path = file.getPath();
     }
 
-    public FileSystemResource(File file, String path) {
-        this.file = file;
+    public FileSystemResource(String path) {
+        this.file = new File(path);
         this.path = path;
     }
 

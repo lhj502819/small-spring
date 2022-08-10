@@ -17,7 +17,7 @@ public class ClassPathResource implements Resource {
     private ClassLoader classLoader;
 
     public ClassPathResource(String path) {
-        this.path = path;
+        this(path, (ClassLoader) null);
     }
 
     public ClassPathResource(String path, ClassLoader classLoader) {
@@ -28,6 +28,7 @@ public class ClassPathResource implements Resource {
 
     /**
      * 通过ClassLoader读取ClassPath下的文件信息
+     *
      * @return
      * @throws Exception
      */

@@ -1,13 +1,10 @@
 package cn.onenine.springframework.beans.factory.support;
 
-import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.core.io.Resource;
 import cn.onenine.springframework.core.io.ResourceLoader;
 
-import java.util.List;
-
 /**
- * Description：
+ * Description：Bean定义读取接口 ，Simple interface for bean definition readers.
  *
  * @author li.hongjian
  * @email lhj502819@163.com
@@ -15,14 +12,20 @@ import java.util.List;
  */
 public interface BeanDefinitionReader {
 
+    /**
+     * {@link #getRegistry} 和 {@link  #getResourceLoader()}都是用于提供给后面三个方法的工具，加载和注册。
+     *  这两国方法的实现会包装到具体的抽象类中，以免污染具体的接口实现方法。
+     */
+
+
     BeanDefinitionRegistry getRegistry();
 
     ResourceLoader getResourceLoader();
 
-    BeanDefinition loadBeanDefinition(Resource resource) throws Exception;
+    void loadBeanDefinitions(Resource resource) throws Exception;
 
-    List<BeanDefinition> loadBeanDefinitions(Resource resource) throws Exception;
+    void loadBeanDefinitions(Resource... resource) throws Exception;
 
-    List<BeanDefinition> loadBeanDefinitions(String location) throws Exception;
+    void loadBeanDefinitions(String location) throws Exception;
 
 }
