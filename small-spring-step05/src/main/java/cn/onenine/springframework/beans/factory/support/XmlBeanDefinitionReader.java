@@ -81,14 +81,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             //定义Bean
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
             //读取属性并填充
-            for (int j = 0; i < bean.getChildNodes().getLength(); j++) {
+            for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                 if (!(bean.getChildNodes().item(j) instanceof Element))
                     continue;
                 if (!"property".equals(bean.getChildNodes().item(j).getNodeName()))
                     continue;
 
                 //解析标签： property
-                Element property = (Element) bean.getChildNodes().item(i);
+                Element property = (Element) bean.getChildNodes().item(j);
                 String attrName = property.getAttribute("name");
                 String attrValue = property.getAttribute("value");
                 String attrRef = property.getAttribute("ref");
