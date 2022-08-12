@@ -15,12 +15,19 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 
     }
 
+    /**
+     * 从xml中读取BeanDefinition
+     * @param configLocations
+     */
     public ClassPathXmlApplicationContext(String configLocations) {
         this(new String[]{configLocations});
     }
 
 
-
+    /**
+     * 从xml中读取BeanDefinition并刷新上下文
+     * @param configLocations
+     */
     public ClassPathXmlApplicationContext(String[] configLocations) {
         this.configLocations = configLocations;
         refresh();

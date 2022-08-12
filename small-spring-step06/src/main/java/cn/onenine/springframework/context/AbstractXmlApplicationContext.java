@@ -12,6 +12,7 @@ import cn.onenine.springframework.beans.factory.support.XmlBeanDefinitionReader;
  * @since 2022/8/11 22:37
  */
 public abstract class AbstractXmlApplicationContext extends AbstractRefreshableApplicationContext{
+
     @Override
     protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException {
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory,this);
@@ -22,5 +23,8 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableA
         }
     }
 
+    /**
+     * 为了从入口上下文类拿到配置信息的地址描述
+     */
     protected abstract  String[] getConfigLocations();
 }
