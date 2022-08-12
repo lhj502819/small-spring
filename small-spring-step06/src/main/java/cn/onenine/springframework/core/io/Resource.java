@@ -2,6 +2,8 @@ package cn.onenine.springframework.core.io;
 
 import cn.onenine.springframework.beans.factory.BeansException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -14,6 +16,6 @@ import java.io.InputStream;
  */
 public interface Resource {
 
-    InputStream getInputStream() throws BeansException;
+    InputStream getInputStream() throws IOException;
 
 }

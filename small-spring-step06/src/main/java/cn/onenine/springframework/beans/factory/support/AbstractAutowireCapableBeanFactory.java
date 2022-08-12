@@ -12,6 +12,9 @@ import cn.onenine.springframework.beans.factory.config.BeanReference;
 import java.lang.reflect.Constructor;
 
 /**
+ * Description：在Bean创建时完成前置和后置处理
+ *  实现BeanPostProcessor接口后，会涉及到两国接口方法，postProcessBeforeInitialization、postProcessAfterInitialization
+ *  分别作用于Bean对象执行初始化前后的额外处理
  * @author li.hongjian
  * @email lhj502819@163.com
  * @since 2022/8/3
@@ -41,13 +44,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return bean;
     }
 
+    /**
+     * 执行Bean的初始化方法和BeanPostProcessor的前置和后置处理方法
+     * @param beanName
+     * @param bean
+     * @param beanDefinition
+     */
     private Object initializeBean(String beanName, Object bean, BeanDefinition beanDefinition) {
         //1.执行BeanPostProcessor Before处理
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);
         //待完成内容：invokeInitMethods(beanName,wrappedBean,beanDefinition)
         invokeInitMethods(beanName,wrappedBean,beanDefinition);
         //2.执行BeanPostProcessor After处理
-        applyBeanPostProcessorsAfterInitialization(bean,beanName);
+        wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean,beanName);
         return wrappedBean;
     }
 

@@ -4,8 +4,6 @@ import cn.onenine.springframework.beans.factory.BeanFactory;
 import cn.onenine.springframework.beans.factory.BeansException;
 
 /**
- * Description：
- *
  * @author li.hongjian
  * @email lhj502819@163.com
  * @since 2022/8/11 22:08

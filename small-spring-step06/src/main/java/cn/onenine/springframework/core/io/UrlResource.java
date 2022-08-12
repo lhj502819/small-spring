@@ -2,6 +2,7 @@ package cn.onenine.springframework.core.io;
 
 import cn.hutool.core.lang.Assert;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -21,7 +22,7 @@ public class UrlResource implements Resource {
     }
 
     @Override
-    public InputStream getInputStream() throws Exception {
+    public InputStream getInputStream() throws IOException {
         URLConnection con = this.url.openConnection();
         try {
             return con.getInputStream();

@@ -30,10 +30,9 @@ public class ClassPathResource implements Resource {
      * 通过ClassLoader读取ClassPath下的文件信息
      *
      * @return
-     * @throws Exception
      */
     @Override
-    public InputStream getInputStream() throws Exception {
+    public InputStream getInputStream() {
         InputStream is = classLoader.getResourceAsStream(path);
         if (is == null) {
             throw new IllegalArgumentException("Could not find resource [" + path + "]");

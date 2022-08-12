@@ -2,6 +2,7 @@ package cn.onenine.springframework.core.io;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
@@ -26,7 +27,7 @@ public class FileSystemResource implements Resource{
     }
 
     @Override
-    public InputStream getInputStream() throws Exception {
+    public InputStream getInputStream() throws FileNotFoundException {
         return new FileInputStream(file);
     }
 
