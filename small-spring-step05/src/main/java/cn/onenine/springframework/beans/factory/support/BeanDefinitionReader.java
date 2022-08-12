@@ -14,7 +14,7 @@ public interface BeanDefinitionReader {
 
     /**
      * {@link #getRegistry} 和 {@link  #getResourceLoader()}都是用于提供给后面三个方法的工具，加载和注册。
-     *  这两国方法的实现会包装到具体的抽象类中，以免污染具体的接口实现方法。
+     *  这两个方法的实现会包装到具体的抽象类中，以免污染具体的接口实现方法。
      */
 
 

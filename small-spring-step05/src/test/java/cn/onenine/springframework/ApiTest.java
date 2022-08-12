@@ -2,21 +2,14 @@ package cn.onenine.springframework;
 
 import cn.hutool.core.io.IoUtil;
 import cn.onenine.springframework.bean.UserService;
-import cn.onenine.springframework.beans.factory.BeanFactory;
-import cn.onenine.springframework.beans.factory.PropertyValue;
-import cn.onenine.springframework.beans.factory.PropertyValues;
-import cn.onenine.springframework.beans.factory.config.BeanDefinition;
-import cn.onenine.springframework.beans.factory.config.BeanReference;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
-import cn.onenine.springframework.beans.factory.support.XmlBeanDefinitionReader;
+import cn.onenine.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import cn.onenine.springframework.core.io.DefaultResourceLoader;
 import cn.onenine.springframework.core.io.Resource;
-import cn.onenine.springframework.dao.UserDao;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
 
 /**
  * @author li.hongjian
@@ -51,11 +44,6 @@ public class ApiTest {
     }
 
 
-    /**
-     * TODO 待测试为何拉取到流是整个html元素
-     *
-     * @throws Exception
-     */
     @Test
     public void test_url() throws Exception {
         Resource resource = resourceLoader.getResource("https://github.com/fuzhengwei/small-spring/blob/main/important.properties");
