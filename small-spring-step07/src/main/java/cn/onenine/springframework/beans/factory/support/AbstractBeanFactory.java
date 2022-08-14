@@ -1,6 +1,5 @@
 package cn.onenine.springframework.beans.factory.support;
 
-import cn.onenine.springframework.beans.factory.BeanFactory;
 import cn.onenine.springframework.beans.factory.BeansException;
 import cn.onenine.springframework.beans.factory.ConfigurableBeanFactory;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
