@@ -1,9 +1,8 @@
 package cn.onenine.springframework.beans.factory.support;
 
-import cn.onenine.springframework.beans.factory.BeansException;
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.ConfigurableListableBeanFactory;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
-import cn.onenine.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.util.HashMap;
 import java.util.Map;

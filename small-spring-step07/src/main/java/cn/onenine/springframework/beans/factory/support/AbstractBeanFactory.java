@@ -1,9 +1,11 @@
 package cn.onenine.springframework.beans.factory.support;
 
-import cn.onenine.springframework.beans.factory.BeansException;
+import cn.hutool.core.util.ClassUtil;
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.ConfigurableBeanFactory;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanPostProcessor;
+import cn.onenine.springframework.utils.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,9 @@ import java.util.List;
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
 
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
+
+
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     /**
      * 此过程中主要实现了当获取不到单例Bean的时候，需要做相应的Bean实例化操作，而这里并没有具体的实例化的实现，
@@ -70,5 +75,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return beanPostProcessors;
     }
 
-
+    public ClassLoader getBeanClassLoader() {
+        return beanClassLoader;
+    }
 }

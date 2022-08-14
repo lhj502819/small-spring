@@ -1,6 +1,7 @@
 package cn.onenine.springframework.beans.factory.config;
 
-import cn.onenine.springframework.beans.factory.BeansException;
+
+import cn.onenine.springframework.beans.BeansException;
 
 /**
  * Description：提供了修改新实例化Bean对象的扩展点

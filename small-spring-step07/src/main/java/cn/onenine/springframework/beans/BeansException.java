@@ -1,4 +1,4 @@
-package cn.onenine.springframework.beans.factory;
+package cn.onenine.springframework.beans;
 
 /**
  * @author li.hongjian

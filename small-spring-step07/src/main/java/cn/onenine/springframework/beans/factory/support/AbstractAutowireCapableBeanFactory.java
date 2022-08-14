@@ -2,6 +2,10 @@ package cn.onenine.springframework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.onenine.springframework.BeanNameAware;
+import cn.onenine.springframework.beans.BeansException;
+import cn.onenine.springframework.beans.PropertyValue;
+import cn.onenine.springframework.beans.PropertyValues;
 import cn.onenine.springframework.beans.factory.*;
 import cn.onenine.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
@@ -62,6 +66,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      * @param beanDefinition
      */
     private Object initializeBean(String beanName, Object bean, BeanDefinition beanDefinition) {
+        //初始化Bean之前执行 Aware方法
+        if(bean instanceof Aware){
+            if(bean instanceof BeanFactoryAware){
+                ((BeanFactoryAware)bean).setBeanFactory(this);
+            }
+            if(bean instanceof BeanClassLoaderAware){
+                ((BeanClassLoaderAware)bean).setBeanClassLoader(getBeanClassLoader());
+            }
+            if(bean instanceof BeanNameAware){
+                ((BeanNameAware)bean).setBeanName(beanName);
+            }
+        }
+
         //1.执行BeanPostProcessor Before 处理
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);
         //2.执行初始化方法

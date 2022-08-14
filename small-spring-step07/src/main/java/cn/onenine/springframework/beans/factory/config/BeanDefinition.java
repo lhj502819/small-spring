@@ -1,6 +1,6 @@
 package cn.onenine.springframework.beans.factory.config;
 
-import cn.onenine.springframework.beans.factory.PropertyValues;
+import cn.onenine.springframework.beans.PropertyValues;
 
 /**
  * Description：Bean定义

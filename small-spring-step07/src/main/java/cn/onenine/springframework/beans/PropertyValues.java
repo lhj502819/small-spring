@@ -1,4 +1,4 @@
-package cn.onenine.springframework.beans.factory;
+package cn.onenine.springframework.beans;
 
 import java.util.ArrayList;
 import java.util.List;

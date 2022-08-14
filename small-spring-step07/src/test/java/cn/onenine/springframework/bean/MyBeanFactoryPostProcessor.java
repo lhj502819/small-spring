@@ -1,8 +1,8 @@
 package cn.onenine.springframework.bean;
 
 import cn.onenine.springframework.beans.factory.ConfigurableListableBeanFactory;
-import cn.onenine.springframework.beans.factory.PropertyValue;
-import cn.onenine.springframework.beans.factory.PropertyValues;
+import cn.onenine.springframework.beans.PropertyValue;
+import cn.onenine.springframework.beans.PropertyValues;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanFactoryPostProcessor;
 

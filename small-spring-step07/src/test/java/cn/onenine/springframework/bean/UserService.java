@@ -1,7 +1,10 @@
 package cn.onenine.springframework.bean;
 
-import cn.onenine.springframework.beans.factory.DisposableBean;
-import cn.onenine.springframework.beans.factory.InitializingBean;
+import cn.onenine.springframework.BeanNameAware;
+import cn.onenine.springframework.beans.BeansException;
+import cn.onenine.springframework.beans.factory.*;
+import cn.onenine.springframework.context.ApplicationContext;
+import cn.onenine.springframework.context.ApplicationContextAware;
 import cn.onenine.springframework.dao.UserDao;
 
 /**
@@ -11,7 +14,10 @@ import cn.onenine.springframework.dao.UserDao;
  * @email lhj502819@163.com
  * @since 2022/8/2
  */
-public class UserService implements InitializingBean, DisposableBean {
+public class UserService implements InitializingBean, DisposableBean, BeanNameAware, BeanFactoryAware, BeanClassLoaderAware, ApplicationContextAware {
+
+    private BeanFactory beanFactory;
+    private ApplicationContext applicationContext;
 
     private String uId;
     private String company;
@@ -65,4 +71,31 @@ public class UserService implements InitializingBean, DisposableBean {
     }
 
 
+    @Override
+    public void setBeanName(String beanName) {
+        System.out.println("BeanName：" + beanName);
+    }
+
+    @Override
+    public void setBeanClassLoader(ClassLoader classLoader) {
+        System.out.println("BeanClassLoader：" + classLoader);
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    public BeanFactory getBeanFactory() {
+        return beanFactory;
+    }
+
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 }

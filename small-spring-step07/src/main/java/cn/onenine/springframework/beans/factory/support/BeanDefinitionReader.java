@@ -1,6 +1,6 @@
 package cn.onenine.springframework.beans.factory.support;
 
-import cn.onenine.springframework.beans.factory.BeansException;
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.core.io.Resource;
 import cn.onenine.springframework.core.io.ResourceLoader;
 

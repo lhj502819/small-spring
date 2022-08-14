@@ -1,6 +1,6 @@
 package cn.onenine.springframework.context;
 
-import cn.onenine.springframework.beans.factory.BeansException;
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.ConfigurableListableBeanFactory;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
 

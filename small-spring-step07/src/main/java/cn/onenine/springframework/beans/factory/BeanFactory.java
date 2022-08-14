@@ -1,6 +1,8 @@
 package cn.onenine.springframework.beans.factory;
 
 
+import cn.onenine.springframework.beans.BeansException;
+
 /**
  * Description：Bean工厂，用来操作Bean，如注册、获取
  *

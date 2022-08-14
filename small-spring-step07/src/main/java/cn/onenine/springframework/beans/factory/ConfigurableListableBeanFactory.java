@@ -1,5 +1,6 @@
 package cn.onenine.springframework.beans.factory;
 
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanPostProcessor;
 

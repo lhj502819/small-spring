@@ -1,7 +1,7 @@
 package cn.onenine.springframework.beans.factory.support;
 
 import cn.hutool.core.util.StrUtil;
-import cn.onenine.springframework.beans.factory.BeansException;
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.DisposableBean;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 

@@ -2,8 +2,8 @@ package cn.onenine.springframework.beans.factory.xml;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
-import cn.onenine.springframework.beans.factory.BeansException;
-import cn.onenine.springframework.beans.factory.PropertyValue;
+import cn.onenine.springframework.beans.BeansException;
+import cn.onenine.springframework.beans.PropertyValue;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanReference;
 import cn.onenine.springframework.beans.factory.support.AbstractBeanDefinitionReader;
@@ -12,7 +12,6 @@ import cn.onenine.springframework.core.io.Resource;
 import cn.onenine.springframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
     @Override
-    public void loadBeanDefinitions(Resource resource)  throws BeansException{
+    public void loadBeanDefinitions(Resource resource)  throws BeansException {
         try {
             try (InputStream inputStream = resource.getInputStream()) {
                 doLoadBeanDefinitions(inputStream);

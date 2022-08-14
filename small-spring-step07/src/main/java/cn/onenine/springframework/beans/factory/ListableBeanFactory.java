@@ -1,5 +1,7 @@
 package cn.onenine.springframework.beans.factory;
 
+import cn.onenine.springframework.beans.BeansException;
+
 import java.util.Map;
 
 /**

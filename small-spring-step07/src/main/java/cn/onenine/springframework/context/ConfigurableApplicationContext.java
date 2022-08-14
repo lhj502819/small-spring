@@ -1,6 +1,7 @@
 package cn.onenine.springframework.context;
 
-import cn.onenine.springframework.beans.factory.BeansException;
+
+import cn.onenine.springframework.beans.BeansException;
 
 /**
  * Description：继承自 {@link  ApplicationContext} ，并提供了refresh这个核心方法

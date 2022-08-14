@@ -1,7 +1,7 @@
 package cn.onenine.springframework.beans.factory.config;
 
+import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.BeanFactory;
-import cn.onenine.springframework.beans.factory.BeansException;
 
 /**
  * @author li.hongjian
