@@ -1,25 +1,12 @@
 package cn.onenine.springframework;
 
-import cn.hutool.core.io.IoUtil;
 import cn.onenine.springframework.bean.MyBeanFactoryPostProcessor;
 import cn.onenine.springframework.bean.MyBeanPostProcessor;
 import cn.onenine.springframework.bean.UserService;
-import cn.onenine.springframework.beans.factory.BeanFactory;
-import cn.onenine.springframework.beans.factory.PropertyValue;
-import cn.onenine.springframework.beans.factory.PropertyValues;
-import cn.onenine.springframework.beans.factory.config.BeanDefinition;
-import cn.onenine.springframework.beans.factory.config.BeanReference;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.onenine.springframework.beans.factory.support.XmlBeanDefinitionReader;
 import cn.onenine.springframework.context.ClassPathXmlApplicationContext;
-import cn.onenine.springframework.core.io.DefaultResourceLoader;
-import cn.onenine.springframework.core.io.Resource;
-import cn.onenine.springframework.dao.UserDao;
-import org.junit.Before;
 import org.junit.Test;
-
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
 
 /**
  * @author li.hongjian
@@ -27,8 +14,6 @@ import java.lang.reflect.Constructor;
  * @since 2022/8/3
  */
 public class ApiTest {
-
-    private DefaultResourceLoader resourceLoader;
 
 
     /**

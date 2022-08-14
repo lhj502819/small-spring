@@ -2,7 +2,6 @@
 
 <beas>
     <bean id="userDao" class="cn.onenine.springframework.dao.UserDao" />
-
     <bean id="userService" class="cn.onenine.springframework.bean.UserService" >
         <property name="uId" value="10002" />
         <property name="company" value="腾讯" />
