@@ -4,7 +4,7 @@ import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
- * Description：
+ * Description：可配置并的BeanFactory
  *
  * @author li.hongjian
  * @email lhj502819@163.com

@@ -4,7 +4,7 @@ import cn.onenine.springframework.beans.factory.config.BeanPostProcessor;
 import cn.onenine.springframework.beans.factory.config.SingletonBeanRegistry;
 
 /**
- * Description：
+ * Description：可配置的BeanFactory
  *
  * @author li.hongjian
  * @email lhj502819@163.com
