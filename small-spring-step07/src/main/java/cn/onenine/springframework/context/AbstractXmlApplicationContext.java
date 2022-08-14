@@ -2,7 +2,7 @@ package cn.onenine.springframework.context;
 
 import cn.onenine.springframework.beans.factory.BeansException;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
-import cn.onenine.springframework.beans.factory.support.XmlBeanDefinitionReader;
+import cn.onenine.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 /**
  * Description：上下文中对配置信息的加载
