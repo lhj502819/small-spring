@@ -1,11 +1,8 @@
 # 增加功能
-- 增加Bean的生命周期回调，init-method和destroy-method，支持xml配置和实现接口两种方式
-- xml配置：
-  - ![img.png](img.png)
-- 通过实现接口，`InitializingBean`和`DisposableBean`：
-  - ![img_1.png](img_1.png)
+- 增加获取Spring容器资源的接口，如常用的BeanFactory、ApplicationContext
 
 # 实现
-- xml配置的方式会在加载BeanDefinition时读取init-method和destroy-method两个标签
-- init：在创建Bean `AbstractAutowireCapableBeanFactory#createBean`时执行初始化操作
-- destroy：通过添加shutdownHook钩子函数，钩子中执行用户定义的destroy方法
+- 增加Aware标记接口，同时增加多个资源的`Aware`接口，继承`Aware`接口
+- 在创建Bean执行初始化方法时，增加对多个`Aware`的调用，除`ApplicationContext`外，因为创建Bean是在`BeanFactory`中执行的，无法获取`ApplicationContext`
+- 因此增加`ApplicationContextAwareProcessor`，以在上下文刷新时将`ApplicationContextAware`以`BeanPostProcessor`的方式插入到`BeanPostProcessors`中，当创建Bean时则会执行`ApplicationContextAware`
+- 
