@@ -1,8 +1,11 @@
 # Compiled class file
 *.class
 .idea
+target
+*.iml
 # Log file
 *.log
+
 
 # BlueJ files
 *.ctxt
