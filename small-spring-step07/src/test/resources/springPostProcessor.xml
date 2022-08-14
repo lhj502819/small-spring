@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <beas>
-    <bean id="userDao" class="cn.onenine.springframework.dao.UserDao" />
-    <bean id="userService" class="cn.onenine.springframework.bean.UserService" >
+    <bean id="userDao" class="cn.onenine.springframework.dao.UserDao" init-method="initData"/>
+    <bean id="userService" class="cn.onenine.springframework.bean.UserService">
         <property name="uId" value="10002" />
         <property name="company" value="腾讯" />
         <property name="location" value="深圳" />

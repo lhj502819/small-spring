@@ -48,9 +48,6 @@ public class ApiTest {
     @Test
     public void testWithApplicationContext(){
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:springPostProcessor.xml");
-
-        applicationContext.refresh();
-
         UserService userService = applicationContext.getBean("userService", UserService.class);
         userService.queryUserInfo();
     }

@@ -57,7 +57,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     private InstantiationStrategy getInstantiationStrategy() {
-        System.out.println("[AbstractAutowireCapableBeanFactory]use ：" + instantiationStrategy.getClass().getSimpleName() + " instantiate strategy..");
         return instantiationStrategy;
     }
 

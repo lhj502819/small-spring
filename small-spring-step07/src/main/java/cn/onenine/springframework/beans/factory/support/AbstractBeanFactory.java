@@ -2,7 +2,12 @@ package cn.onenine.springframework.beans.factory.support;
 
 import cn.onenine.springframework.beans.factory.BeanFactory;
 import cn.onenine.springframework.beans.factory.BeansException;
+import cn.onenine.springframework.beans.factory.ConfigurableBeanFactory;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
+import cn.onenine.springframework.beans.factory.config.BeanPostProcessor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 模板方法类
@@ -12,7 +17,9 @@ import cn.onenine.springframework.beans.factory.config.BeanDefinition;
  * @email lhj502819@163.com
  * @since 2022/8/3
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
     /**
      * 此过程中主要实现了当获取不到单例Bean的时候，需要做相应的Bean实例化操作，而这里并没有具体的实例化的实现，
@@ -32,7 +39,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     @Override
     public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
-        return (T)getBean(name);
+        return (T) getBean(name);
     }
 
     /**
@@ -50,7 +57,19 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return (T) createBean(name, beanDefinition, args);
     }
 
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        beanPostProcessors.remove(beanPostProcessor);
+        beanPostProcessors.add(beanPostProcessor);
+    }
+
     protected abstract BeanDefinition getBeanDefinition(String beanName);
 
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
+
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return beanPostProcessors;
+    }
+
+
 }

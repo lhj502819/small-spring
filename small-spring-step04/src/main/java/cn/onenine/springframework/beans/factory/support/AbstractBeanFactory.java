@@ -37,7 +37,6 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         Object bean = getSingleton(name);
 
         if (bean != null) {
-            System.out.println("从SingletonMap中获取Bean实例");
             return (T) bean;
         }
 
