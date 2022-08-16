@@ -5,7 +5,7 @@ import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.factory.*;
 import cn.onenine.springframework.context.ApplicationContext;
 import cn.onenine.springframework.context.ApplicationContextAware;
-import cn.onenine.springframework.dao.UserDao;
+import cn.onenine.springframework.dao.IUserDao;
 
 /**
  * Description：用户服务
@@ -22,7 +22,10 @@ public class UserService implements InitializingBean, DisposableBean, BeanNameAw
     private String uId;
     private String company;
     private String location;
-    private UserDao userDao;
+    /**
+     * 新修改了一个原有UserDao属性为IUserDao，后面会给这个属性注入代理对象
+     */
+    private IUserDao userDao;
 
     @Override
     public void destroy() throws Exception {
@@ -61,15 +64,6 @@ public class UserService implements InitializingBean, DisposableBean, BeanNameAw
     public void setuId(String uId) {
         this.uId = uId;
     }
-
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
 
     @Override
     public void setBeanName(String beanName) {
