@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beas>
+    <bean id="customListener" class="cn.onenine.springframework.event.CustomListener" />
+    <bean id="contextRefreshEventListener" class="cn.onenine.springframework.context.event.ContextRefreshEventListener" />
+    <bean id="contextCloseEventListener" class="cn.onenine.springframework.context.event.ContextCloseEventListener" />
+</beas>
