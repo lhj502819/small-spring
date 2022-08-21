@@ -1,10 +1,11 @@
 package cn.onenine.springframework;
 
 import cn.onenine.springframework.aop.AdvisedSupport;
-import cn.onenine.springframework.aop.AspectJExpressionPointcut;
+import cn.onenine.springframework.aop.aspectj.AspectJExpressionPointcut;
 import cn.onenine.springframework.aop.MethodMatcher;
 import cn.onenine.springframework.aop.TargetSource;
 import cn.onenine.springframework.aop.framework.Cglib2AopProxy;
+import cn.onenine.springframework.aop.framework.JdkDynamicAopProxy;
 import cn.onenine.springframework.aop.framework.ReflectiveMethodInvocation;
 import cn.onenine.springframework.bean.IUserService;
 import cn.onenine.springframework.bean.UserService;
@@ -24,6 +25,13 @@ import java.lang.reflect.Method;
 public class ApiTest {
 
     @Test
+    public void testAop() throws NoSuchMethodException {
+        AspectJExpressionPointcut aspectJExpressionPointcut = new AspectJExpressionPointcut("execution(* cn.onenine.springframework.bean.IUserService.*(..))");
+        System.out.println("ClassMatcher：" + aspectJExpressionPointcut.matches(UserService.class));;
+        System.out.println("MethodMatcher：" + aspectJExpressionPointcut.matches(UserService.class.getMethod("queryUserInfo"),UserService.class));;
+    }
+
+    @Test
     public void test_proxy_method(){
         //目标对象（可以替换成任何的目标对象）
         Object targetObj = new UserService();
@@ -31,7 +39,7 @@ public class ApiTest {
         //AOP代理
         IUserService userService = (IUserService)Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), targetObj.getClass().getInterfaces(), new InvocationHandler() {
             //方法匹配器
-            MethodMatcher methodMatcher = new AspectJExpressionPointcut("execution(* cn.onenine.springframework.bean.UserService.*(..))");
+            MethodMatcher methodMatcher = new AspectJExpressionPointcut("execution(* cn.onenine.springframework.bean.IUserService.*(..))");
             @Override
             public Object invoke(Object o, Method method, Object[] args) throws Throwable {
                 if (methodMatcher.matches(method, targetObj.getClass())) {
@@ -68,10 +76,12 @@ public class ApiTest {
         advisedSupport.setMethodInterceptor(new UserServiceInterceptor());
         advisedSupport.setMethodMatcher(new AspectJExpressionPointcut("execution(* cn.onenine.springframework.bean.IUserService.*(..))"));
 
-//        //代理对象（JdkDynamicAopProxy）
-//        IUserService proxy_jdk = (IUserService) new JdkDynamicAopProxy(advisedSupport).getProxy();
-//        //测试调用
-//        System.out.println("测试结果：" + proxy_jdk.queryUserInfo());
+        //代理对象（JdkDynamicAopProxy）
+        IUserService proxy_jdk = (IUserService) new JdkDynamicAopProxy(advisedSupport).getProxy();
+        //测试调用
+        System.out.println("测试结果：" + proxy_jdk.queryUserInfo() +"\n");
+        System.out.println("--------------------------------\n");
+
 
         //代理对象（CglibDynamicAopProxy）
         IUserService proxy_cglib = (IUserService) new Cglib2AopProxy(advisedSupport).getProxy();

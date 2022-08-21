@@ -1,7 +1,7 @@
 package cn.onenine.springframework.aop;
 
 /**
- * Description：
+ * Description：目标代理对象包装类
  *
  * @author li.hongjian
  * @email lhj502819@163.com

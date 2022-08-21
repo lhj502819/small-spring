@@ -22,6 +22,5 @@ public class UserServiceInterceptor implements MethodInterceptor {
             System.out.println("方法耗时：" + (System.currentTimeMillis() - start) + "ms");
             System.out.println("监控 - End\r\n");
         }
-
     }
 }

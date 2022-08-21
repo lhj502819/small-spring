@@ -43,7 +43,9 @@ public class Cglib2AopProxy implements AopProxy {
         @Override
         public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
             CglibMethodInvocation methodInvocation = new CglibMethodInvocation(advised.getTargetSource().getTarget(), method, objects, methodProxy);
+            //判断方法是否匹配表达式
             if(advised.getMethodMatcher().matches(method,advised.getTargetSource().getTarget().getClass())){
+                //匹配则执行自定义的拦截器
                 return advised.getMethodInterceptor().invoke(methodInvocation);
             }
             return methodInvocation.proceed();
@@ -62,7 +64,8 @@ public class Cglib2AopProxy implements AopProxy {
 
         @Override
         public Object proceed() throws Throwable {
-            return this.methodProxy.invoke(this.target, this.arguments);
+//            return this.methodProxy.invoke(this.target, this.arguments);
+            return super.proceed();
         }
     }
 }
