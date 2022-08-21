@@ -31,7 +31,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         try {
             //判断是否返回代理对象
             bean = resolveBeforeInstantiation(beanName, beanDefinition);
-            if(bean != null){
+            if (bean != null) {
                 return bean;
             }
             //创建Bean对象
@@ -42,7 +42,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             bean = initializeBean(beanName, bean, beanDefinition);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new BeansException("Instantiation of bean failed", e);
+            throw new BeansException("Instantiation of bean " + beanName + " failed", e);
         }
 
         //注册销毁方法

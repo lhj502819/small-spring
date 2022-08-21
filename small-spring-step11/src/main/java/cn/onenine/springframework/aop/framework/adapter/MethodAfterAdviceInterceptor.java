@@ -1,5 +1,6 @@
 package cn.onenine.springframework.aop.framework.adapter;
 
+import cn.onenine.springframework.aop.MethodAfterAdvice;
 import cn.onenine.springframework.aop.MethodBeforeAdvice;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -11,22 +12,21 @@ import org.aopalliance.intercept.MethodInvocation;
  * @email lhj502819@163.com
  * @since 2022/8/21 21:00
  */
-public class MethodBeforeAdviceInterceptor implements MethodInterceptor {
+public class MethodAfterAdviceInterceptor implements MethodInterceptor {
 
-    private MethodBeforeAdvice advice;
+    private MethodAfterAdvice advice;
 
-    public MethodBeforeAdviceInterceptor() {
+    public MethodAfterAdviceInterceptor() {
     }
 
-
-    public MethodBeforeAdviceInterceptor(MethodBeforeAdvice advice) {
+    public MethodAfterAdviceInterceptor(MethodAfterAdvice advice) {
         this.advice = advice;
     }
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         //用于自己实现MethodBeforeAdvice接口后做的相应处理
-        this.advice.before(invocation.getMethod(), invocation.getArguments(), invocation.getThis());
+        this.advice.after(invocation.getMethod(), invocation.getArguments(), invocation.getThis());
 
         return invocation.proceed();
     }
