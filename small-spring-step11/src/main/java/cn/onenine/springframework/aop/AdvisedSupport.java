@@ -47,12 +47,14 @@ public class AdvisedSupport {
 
     /**
      * 动态代理模式，false：JDK  true：Cglib
-     * @return
      */
     public boolean isProxyTargetClass() {
         return proxyTargetClass;
     }
 
+    /**
+     * 动态代理模式，false：JDK  true：Cglib
+     */
     public void setProxyTargetClass(boolean proxyTargetClass) {
         this.proxyTargetClass = proxyTargetClass;
     }

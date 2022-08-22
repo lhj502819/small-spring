@@ -10,4 +10,5 @@ import org.aopalliance.aop.Advice;
  * @since 2022/8/21 20:39
  */
 public interface AfterAdvice extends Advice {
+
 }

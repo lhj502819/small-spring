@@ -6,7 +6,7 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 
 /**
- * Description：方法入参包装信息，提供 目标对象、方法、入参
+ * Description：方法入参包装类，提供 目标对象、方法、入参
  *
  * @author li.hongjian
  * @email lhj502819@163.com

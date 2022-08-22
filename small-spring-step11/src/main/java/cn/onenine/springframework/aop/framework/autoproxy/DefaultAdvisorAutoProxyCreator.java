@@ -47,6 +47,7 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
      */
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+        //AOP相关的类不进行代理
         if(isInfrastructureClass(beanClass)){
             return null;
         }

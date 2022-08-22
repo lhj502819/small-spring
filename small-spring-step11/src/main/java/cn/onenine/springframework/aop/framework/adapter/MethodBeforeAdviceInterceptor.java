@@ -1,6 +1,7 @@
 package cn.onenine.springframework.aop.framework.adapter;
 
 import cn.onenine.springframework.aop.MethodBeforeAdvice;
+import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 

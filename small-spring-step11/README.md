@@ -1,20 +1,9 @@
-# 增加功能 - 实现简易AOP
+# 增加功能 - 将AOP与Spring进行整合
+- 封装原有的API，如组装代理信息（目标代理对象、切面、切面表达式）以及创建代理的过程
+- 改为由用户配置完成，将生成代理对象与Bean的生命周期整合，并提供BeforeAdvice、AfterAdvice等通知模式
 ## 需要的角色
 ### 功能支撑
-- 方法匹配器（`Interface`）- 判断方法是否满足切点表达式
-- 类过滤器（`Interface`）- 判断Class是否满足切点表达式
-- 切点表达式类（`AspectJExpressionPointcut`） - 聚合实现方法匹配器、类过滤器
-- 门面类（包装类）`AdvisedSupport` - 组合方法匹配器(`MethodMatcher`)、被代理的目标对象(`targetObject`)、用户自定义的拦截器(`MethodInterceptor`)
-- 目标代理对象包装类（`TargetSource`）
-- 对AOP联盟`MethodInvocation`的实现：`ReflectiveMethodInvocation`
-### 对外API
-- 获取代理对象 (`AopProxy`)
-  - 具体获取代理对象的实现：Jdk、Cglib
-- 拦截器：实现AOP联盟的`MethodInterceptor`，`MethodInterceptor`需要与`MethodInvocation`配合使用
+- `Advice`适配器`MethodBeforeAdviceInterceptor`，将Advice适配为MethodInterceptor，因为拦截器的执行都是通过`MethodInterceptor`去执行的
+- `AOP`角色包装类`AspectJExpressionPointcutAdvisor`，用于包装切面表达式、切面(Advice)、切点，主要用于开放给用户使用，在xml中配置
 
-# 类图
-![img_2.png](img_2.png)
-
-# 缺点
-- 没有与Spring进行整合，这样直接给用户使用很不友好
 

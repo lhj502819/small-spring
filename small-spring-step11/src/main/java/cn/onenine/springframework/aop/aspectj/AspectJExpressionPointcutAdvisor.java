@@ -15,7 +15,7 @@ import org.aopalliance.aop.Advice;
  */
 public class AspectJExpressionPointcutAdvisor implements PointcutAdvisor {
 
-    //切面
+    //切面，主要用于判断Class/Method是否满足切面表达式
     private AspectJExpressionPointcut pointcut;
     //具体的拦截方法
     private Advice advice;
