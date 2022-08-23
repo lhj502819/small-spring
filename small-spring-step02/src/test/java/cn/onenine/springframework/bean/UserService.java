@@ -1,4 +1,4 @@
-package cn.onenine.springframework.bean;
+package cn.onenine.springframework.test.bean;
 
 /**
  * Description：用户服务

@@ -1,10 +1,8 @@
 package cn.onenine.springframework;
 
-import cn.onenine.springframework.bean.UserService;
 import cn.onenine.springframework.context.ClassPathXmlApplicationContext;
 import cn.onenine.springframework.event.CustomEvent;
 import org.junit.Test;
-import org.openjdk.jol.info.ClassLayout;
 
 /**
  * @author li.hongjian

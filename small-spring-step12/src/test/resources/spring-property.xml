@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beas>
+    <bean name="userService" class="cn.onenine.springframework.test.bean.UserService">
+        <property name="token" value="${token}"/>
+    </bean>
+
+    <bean  class="cn.onenine.springframework.beans.factory.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
+
+
+</beas>

@@ -1,16 +1,13 @@
 package cn.onenine.springframework;
 
-import cn.onenine.springframework.bean.UserService;
-import cn.onenine.springframework.beans.factory.BeanFactory;
+import cn.onenine.springframework.test.bean.UserService;
 import cn.onenine.springframework.beans.factory.PropertyValue;
 import cn.onenine.springframework.beans.factory.PropertyValues;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanReference;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
-import cn.onenine.springframework.dao.UserDao;
+import cn.onenine.springframework.test.dao.UserDao;
 import org.junit.Test;
-
-import java.lang.reflect.Constructor;
 
 /**
  * @author li.hongjian

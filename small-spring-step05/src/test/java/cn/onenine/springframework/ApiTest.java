@@ -1,7 +1,7 @@
 package cn.onenine.springframework;
 
 import cn.hutool.core.io.IoUtil;
-import cn.onenine.springframework.bean.UserService;
+import cn.onenine.springframework.test.bean.UserService;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.onenine.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import cn.onenine.springframework.core.io.DefaultResourceLoader;

@@ -1,6 +1,6 @@
 package cn.onenine.springframework;
 
-import cn.onenine.springframework.bean.UserService;
+import cn.onenine.springframework.test.bean.UserService;
 import cn.onenine.springframework.context.ClassPathXmlApplicationContext;
 import org.junit.Test;
 import org.openjdk.jol.info.ClassLayout;

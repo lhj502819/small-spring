@@ -1,6 +1,6 @@
 package cn.onenine.springframework;
 
-import cn.onenine.springframework.bean.UserService;
+import cn.onenine.springframework.test.bean.UserService;
 import cn.onenine.springframework.beans.factory.BeanFactory;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;

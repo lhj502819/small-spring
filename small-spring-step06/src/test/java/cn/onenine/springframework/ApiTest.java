@@ -1,8 +1,8 @@
 package cn.onenine.springframework;
 
-import cn.onenine.springframework.bean.MyBeanFactoryPostProcessor;
-import cn.onenine.springframework.bean.MyBeanPostProcessor;
-import cn.onenine.springframework.bean.UserService;
+import cn.onenine.springframework.test.bean.MyBeanFactoryPostProcessor;
+import cn.onenine.springframework.test.bean.MyBeanPostProcessor;
+import cn.onenine.springframework.test.bean.UserService;
 import cn.onenine.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.onenine.springframework.beans.factory.support.XmlBeanDefinitionReader;
 import cn.onenine.springframework.context.ClassPathXmlApplicationContext;
