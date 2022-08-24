@@ -15,7 +15,7 @@ import java.util.Collection;
 
 /**
  * Description：主要核心实现在于postProcessBeforeInstantiation方法中
- *  获取了所有的advisors以后就可以遍历相应的AspectJExpressionPointcutAdvisor，填充对应的属性信息，
+ *  获取了所有的advisors以后就可以遍历相应的 AspectJExpressionPointcutAdvisor，填充对应的属性信息，
  *      包括目标对象、拦截方法、匹配器，之后返回代理对象即可
  *      此时现在调用方法获取到的这个Bean对象就是一个被切面注入的代理对象了，当调用方法的时候，则会被按需拦截处理
  *
@@ -71,10 +71,14 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
             advisedSupport.setProxyTargetClass(false);
             return new ProxyFactory(advisedSupport).getProxy();
         }
-
         return null;
     }
 
+    /**
+     * 判断是否为基础Spring框架的Class，例如AOP相关的类
+     * @param beanClass
+     * @return
+     */
     private boolean isInfrastructureClass(Class<?> beanClass) {
         return Advice.class.isAssignableFrom(beanClass) || Pointcut.class.isAssignableFrom(beanClass) || Advisor.class.isAssignableFrom(beanClass);
     }

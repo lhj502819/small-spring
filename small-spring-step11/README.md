@@ -5,5 +5,6 @@
 ### 功能支撑
 - `Advice`适配器`MethodBeforeAdviceInterceptor`，将Advice适配为MethodInterceptor，因为拦截器的执行都是通过`MethodInterceptor`去执行的
 - `AOP`角色包装类`AspectJExpressionPointcutAdvisor`，用于包装切面表达式、切面(Advice)、切点，主要用于开放给用户使用，在xml中配置
+- `InstantiationAwareBeanPostProcessor` 继承了`BeanPostProcessor`，用于实现在Bean实例化之前进行代理对象的创建`DefaultAdvisorAutoProxyCreator`
 
 
