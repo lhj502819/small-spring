@@ -2,6 +2,7 @@ package cn.onenine.springframework.context.annotation;
 
 import cn.hutool.core.util.StrUtil;
 import cn.onenine.springframework.beans.factory.config.BeanDefinition;
+import cn.onenine.springframework.beans.factory.support.AutowiredAnnotationBeanPostProcessor;
 import cn.onenine.springframework.beans.factory.support.BeanDefinitionRegistry;
 import cn.onenine.springframework.stereotype.Component;
 
@@ -36,6 +37,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
                 registry.registerBeanDefinition(determineBeanName(beanDefinition) , beanDefinition);
             }
         }
+
+        registry.registerBeanDefinition("cn.onenine.springframework.beans.factory.support.AutowiredAnnotationBeanPostProcessor", new BeanDefinition(AutowiredAnnotationBeanPostProcessor.class));
     }
 
     /**

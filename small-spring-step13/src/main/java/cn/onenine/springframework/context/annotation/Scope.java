@@ -3,7 +3,7 @@ package cn.onenine.springframework.context.annotation;
 import java.lang.annotation.*;
 
 /**
- * Description：标识注解，用于给Spring扫描注册到Bean容器中
+ * Description：Bean的作用域注解，默认为单例
  *
  * @author li.hongjian
  * @email lhj502819@163.com
@@ -12,8 +12,8 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Component {
+public @interface Scope {
 
-    String value() default "";
+    String value() default "singleton";
 
 }

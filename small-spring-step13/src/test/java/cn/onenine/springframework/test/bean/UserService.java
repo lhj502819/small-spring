@@ -1,8 +1,10 @@
 package cn.onenine.springframework.test.bean;
 
+import cn.onenine.springframework.beans.factory.annotation.Autowired;
 import cn.onenine.springframework.stereotype.Component;
 import cn.onenine.springframework.context.annotation.Scope;
 import cn.onenine.springframework.test.dao.IUserDao;
+import cn.onenine.springframework.test.dao.UserDao;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -14,18 +16,13 @@ import java.util.concurrent.TimeUnit;
  * @email lhj502819@163.com
  * @since 2022/8/2
  */
-@Component("userService1")
-@Scope(value = "prototype")
+@Component("userService")
 public class UserService implements IUserService {
-
-    private String uId;
-    private String company;
-    private String location;
-
     private String token;
     /**
      * 新修改了一个原有UserDao属性为IUserDao，后面会给这个属性注入代理对象
      */
+    @Autowired
     private IUserDao userDao;
 
     @Override
@@ -35,7 +32,7 @@ public class UserService implements IUserService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "壹玖，10001，北京";
+        return userDao.queryUserName("10001");
     }
 
     public String register(String userName){
@@ -55,28 +52,5 @@ public class UserService implements IUserService {
         this.token = token;
     }
 
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getuId() {
-        return uId;
-    }
-
-    public void setuId(String uId) {
-        this.uId = uId;
-    }
 
 }
