@@ -1,9 +1,5 @@
 # 增加功能 
-## 实现通过扫描包路径自动注册Bean
-### 需要的角色
-- 扫描包路径，得到使用了`Component`注解的Class，<`ClassPathScanningCandidateComponentProvider`>
-- 生成对应的BeanDefinition，通过注解`Scope`得到Bean的作用域，并将BeaDefinition注册到容器中，<`ClassPathBeanDefinitionScanner`>
-- 读取xml中配置的需要扫描的包路径，对`XmlBeanDefinitionReader`的能力进行扩展，增加扫描`context:component-scan`，并结合上边两种能力，实现扫描包路径并自动注册Bean
-
-## 实现占位符解析
-- 通过实现`BeanFactoryPostProcessor`，在BeanDefinition初始化完成之后对字段为`${x}`占位符的字段进行解析装载，<`PropertyPlaceholderConfigurer`>
+## 实现对代理对象的属性注入
+- 原有的代理对象只是在对象实例化之前进行了拦截，进行了代理的对象的创建，但缺少了对属性的填充，也就是不在Bean的生命周期中
+- 因此需要在Bean的初始化方法执行完成之后再创建代理对象，将这个步骤移到Bean的生命周期中，之前的`DefaultAdvisorAutoProxyCreator`实现了`BeanPostProcessor#postProcessBeforeInstantiation`，因此也需要把这个逻辑移动到`#DefaultAdvisorAutoProxyCreator`中
+- 同时在创建代理对象是，targetObject则是已经创建完成的Bean实例，这个Bean实例的属性也已经填充/注入完毕了
