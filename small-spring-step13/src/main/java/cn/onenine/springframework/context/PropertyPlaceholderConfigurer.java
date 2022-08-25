@@ -1,4 +1,4 @@
-package cn.onenine.springframework.utils;
+package cn.onenine.springframework.context;
 
 import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.PropertyValue;
@@ -8,6 +8,7 @@ import cn.onenine.springframework.beans.factory.config.BeanDefinition;
 import cn.onenine.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import cn.onenine.springframework.core.io.DefaultResourceLoader;
 import cn.onenine.springframework.core.io.Resource;
+import cn.onenine.springframework.utils.StringValueResolver;
 
 import java.io.IOException;
 import java.util.Properties;

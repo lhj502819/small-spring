@@ -53,17 +53,15 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
             if(!classFilter.matches(beanClass)){
                 continue;
             }
+
             AdvisedSupport advisedSupport = new AdvisedSupport();
-            TargetSource targetSource = null;
-            try {
-                targetSource = new TargetSource(beanClass.getDeclaredConstructor().newInstance());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            TargetSource targetSource = new TargetSource(bean);
             advisedSupport.setTargetSource(targetSource);
             advisedSupport.setMethodInterceptor((MethodInterceptor) advisor.getAdvice());
             advisedSupport.setMethodMatcher(advisor.getPointcut().getMethodMatcher());
             advisedSupport.setProxyTargetClass(false);
+
             return new ProxyFactory(advisedSupport).getProxy();
         }
         return bean;

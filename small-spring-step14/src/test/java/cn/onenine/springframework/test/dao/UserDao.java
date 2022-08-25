@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @Component
 public class UserDao implements IUserDao{
-    private static Map<String,String > hashMap = new HashMap<>();
+    private static final Map<String,String > hashMap = new HashMap<>();
 
     static {
         hashMap.put("10001", "壹玖1，北京1");

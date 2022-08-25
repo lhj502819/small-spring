@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit;
  * @email lhj502819@163.com
  * @since 2022/8/2
  */
-//@Component("userService")
+@Component("userService")
 public class UserService implements IUserService {
-    @Value("#{token}")
+    @Value("${token}")
     private String token;
     /**
      * 新修改了一个原有UserDao属性为IUserDao，后面会给这个属性注入代理对象
@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     private IUserDao userDao;
 
     @Override
-    public String  queryUserInfo(){
+    public String queryUserInfo() {
         try {
             TimeUnit.MILLISECONDS.sleep(new Random(1).nextInt(100));
         } catch (InterruptedException e) {
@@ -37,7 +37,7 @@ public class UserService implements IUserService {
         return userDao.queryUserName("10001") + "，token：" + token;
     }
 
-    public String register(String userName){
+    public String register(String userName) {
         try {
             TimeUnit.MILLISECONDS.sleep(new Random(1).nextInt(100));
         } catch (InterruptedException e) {

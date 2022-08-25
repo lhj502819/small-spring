@@ -6,18 +6,19 @@
       xsi:schemaLocation="http://www.springframework.org/schema/beans
 	         http://www.springframework.org/schema/beans/spring-beans.xsd
 		 http://www.springframework.org/schema/context">
+
     <context:component-scan base-package="cn.onenine.springframework.test" />
 
 
-    <bean  class="cn.onenine.springframework.utils.PropertyPlaceholderConfigurer">
+    <bean  class="cn.onenine.springframework.context.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:application.properties"/>
     </bean>
 
-    <bean id="userService" class="cn.onenine.springframework.test.bean.UserService" />
+<!--    <bean id="userService" class="cn.onenine.springframework.test.bean.UserService" />-->
 
     <bean class="cn.onenine.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
 
-    <bean id="beforeAdvice" class="cn.onenine.springframework.aspectj.UserServiceBeforeAdvice" />
+    <bean id="beforeAdvice" class="cn.onenine.springframework.test.aspectj.UserServiceBeforeAdvice" />
 
     <bean id="methodInterceptor" class="cn.onenine.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor" >
         <property name="advice" ref="beforeAdvice" />

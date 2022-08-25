@@ -2,7 +2,6 @@ package cn.onenine.springframework.test;
 
 import cn.onenine.springframework.test.bean.IUserService;
 import cn.onenine.springframework.context.ClassPathXmlApplicationContext;
-import cn.onenine.springframework.interceptor.UserServiceInterceptor;
 import cn.onenine.springframework.test.bean.UserService;
 import org.junit.Test;
 
