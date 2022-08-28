@@ -5,6 +5,7 @@
  ![img.png](img.png)
 
 ## BeanFactory和ApplicationContext的区别
+> 官方文档：https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-beanfactory
 - BeanFactory提供了基础Spring IOC的功能的基础，主要用于在Spring框架内部使用以及与其他第三方框架的集成
 - ApplicationContext包含了BeanFactory支持的所有功能，ApplicationContext会自动检测几种Bean，例如注解处理和AOP代理，如果使用BeanFactory则不会执行，
 包括对于BeanPostProcessor的检测和注册，BeanFactory都不会自动执行
