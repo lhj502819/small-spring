@@ -1,11 +1,13 @@
 # 增加功能 
-## 解决的Bean的循环依赖问题
-## 循环依赖的场景
-- 自身依赖于自身
-- 互相循环依赖
-- 多组循环依赖（间接）
+## 增加类型转换机制
 
-## 使用缓存解决
-- 分为三个缓存：成品对象、半成品对象（未填充属性）、代理对象
-- 在Bean对象创建完之后还没有填充属性之前先放到缓存中，主要实现为 `AbstractAutowireCapableBeanFactory#createBean`和`AbstractBeanFactory#doGetBean`
+## 需要的角色
+- 转换器 Converter
+- 转换器注册器 ConverterRegistry
+- 转换器工厂 ConverterFactory
+- 转换器API ConverterService
 
+## 与Spring整合
+
+在进行属性填充和@Value注解解析时整合，`AbstractAutowireCapableBeanFactory#applyPropertyValues`
+和`AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues`

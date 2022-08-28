@@ -10,9 +10,6 @@ package cn.onenine.springframework.core.convert.converter;
 public interface ConverterFactory<S,R> {
     /**
      * 获取能将S转换为T的converter，并且T是R的一个实例
-     * @param targetType
-     * @return
-     * @param <T>
      */
     <T extends  R> Converter<S,T> getConverter(Class<T> targetType);
 }

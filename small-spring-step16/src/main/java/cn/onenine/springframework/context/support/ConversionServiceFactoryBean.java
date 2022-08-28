@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  * Description：类型转换工厂，通过FactoryBean就可以完成工程对象的操作，可以提供出转换对象的服务GenericConversionService，
- *  在afterPropertiesSet中调用了注册抓换操作的类，最终这个类会被配置到spring.xml中在启动的过程加载
+ *  在afterPropertiesSet中调用了注册转换操作的类，最终这个类会被配置到spring.xml中在启动的过程加载
  *
  * @author li.hongjian
  * @email lhj502819@163.com

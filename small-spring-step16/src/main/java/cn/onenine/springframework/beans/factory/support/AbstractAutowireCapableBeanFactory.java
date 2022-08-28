@@ -52,7 +52,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 return bean;
             }
 
-            //在填充Bean属性之前，允许BeanPostProcessor修改属性值
+            //在填充Bean属性之前，允许BeanPostProcessor修改属性值，比如解析@Autowired和@Value注解
             applyBeanPostProcessorsBeforeApplyingPropertyValues(beanName, bean, beanDefinition);
             //填充bean属性
             applyPropertyValues(beanName, bean, beanDefinition);
