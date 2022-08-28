@@ -31,11 +31,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean = null;
         try {
-            //判断是否返回代理对象 ， 移动到AfterBeanPostProcessor中
-//            bean = resolveBeforeInstantiation(beanName, beanDefinition);
-//            if (bean != null) {
-//                return bean;
-//            }
+            //执行实例化前的操作
+            bean = resolveBeforeInstantiation(beanName, beanDefinition);
+            if (bean != null) {
+                return bean;
+            }
             //创建Bean对象
             bean = createBeanInstance(beanDefinition, beanName, args);
 
@@ -45,7 +45,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 addSingletFactory(beanName, () -> getEarlyBeanReference(beanName, finalBean));
             }
 
-            //实例化后判断
+            //实例化后判断，是否继续执行
             boolean continueWithPropertyPopulation = applyBeanPostProcessorsAfterInstantiation(beanName, bean);
 
             if(!continueWithPropertyPopulation){
@@ -63,11 +63,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             throw new BeansException("Instantiation of bean " + beanName + " failed", e);
         }
 
-        //注册销毁方法
-        registerDisposableBeanInNecessary(beanName, bean, beanDefinition);
 
         Object exposedObject = bean;
         if (beanDefinition.isSingleton()) {
+            //注册销毁方法
+            registerDisposableBeanInNecessary(beanName, bean, beanDefinition);
+
             exposedObject = getSingleton(beanName);
             //添加到单例对象缓存中
             registerSingleton(beanName, exposedObject);
@@ -146,10 +147,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     void registerDisposableBeanInNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
-        //非Singleton Bean不执行销毁方法
-        if (!beanDefinition.isSingleton()) {
-            return;
-        }
 
         if (bean instanceof DisposableBean || StrUtil.isNotEmpty(beanDefinition.getDestroyMethodName())) {
             registryDisposableBean(beanName, new DisposableBeanAdapter(bean, beanName, beanDefinition));

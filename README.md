@@ -2,7 +2,7 @@
 
 ## Spring Bean的生命周期
 整个SpringIOC容器的启动是在 `AbstractApplicationContext#refresh`中执行的，包含了整个Bean的生命周期
-
+ ![img.png](img.png)
 
 ## BeanFactory和ApplicationContext的区别
 - BeanFactory提供了基础Spring IOC的功能的基础，主要用于在Spring框架内部使用以及与其他第三方框架的集成

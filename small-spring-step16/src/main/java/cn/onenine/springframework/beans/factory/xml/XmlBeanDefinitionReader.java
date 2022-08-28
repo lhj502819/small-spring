@@ -67,6 +67,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             }
             scanPackage(scanPath);
         }
+
         List<Element> beanList = root.elements("bean");
 
         for (Element element : beanList) {
