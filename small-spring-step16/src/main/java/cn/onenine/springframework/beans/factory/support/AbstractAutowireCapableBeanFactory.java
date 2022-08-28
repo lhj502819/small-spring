@@ -246,6 +246,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         try {
             PropertyValues propertyValues = beanDefinition.getPropertyValues();
             for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+
                 String name = propertyValue.getName();
                 Object value = propertyValue.getValue();
 
@@ -257,14 +258,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 }else {
                     Class<?> sourceType = value.getClass();
                     Class<?> targetType = (Class<?>) TypeUtil.getFieldType(bean.getClass(),name);
-
-                    ConversionService conversionService = getConversionService();
-                    if (conversionService != null) {
-                        if (conversionService.canConvert(sourceType,targetType)) {
-                            value = conversionService.convert(value,targetType);
+                    //如果不是引用类型，则进行类型转换
+                    if(sourceType != targetType){
+                        ConversionService conversionService = getConversionService();
+                        if (conversionService != null) {
+                            if (conversionService.canConvert(sourceType,targetType)) {
+                                value = conversionService.convert(value,targetType);
+                            }
                         }
                     }
                 }
+
                 //属性填充
                 BeanUtil.setFieldValue(bean, name, value);
             }
@@ -272,11 +276,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             e.printStackTrace();
             throw new BeansException("Error setting property values ：" + beanName);
         }
-    }
-
-    @Override
-    public ConversionService getConversionService() {
-        return conversionService;
     }
 
 

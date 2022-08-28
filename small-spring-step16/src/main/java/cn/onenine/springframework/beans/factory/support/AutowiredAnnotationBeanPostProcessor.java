@@ -1,6 +1,7 @@
 package cn.onenine.springframework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.TypeUtil;
 import cn.onenine.springframework.beans.BeansException;
 import cn.onenine.springframework.beans.PropertyValues;
 import cn.onenine.springframework.beans.factory.BeanFactory;
@@ -10,6 +11,7 @@ import cn.onenine.springframework.beans.factory.annotation.Autowired;
 import cn.onenine.springframework.beans.factory.annotation.Qualifier;
 import cn.onenine.springframework.beans.factory.annotation.Value;
 import cn.onenine.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import cn.onenine.springframework.core.convert.ConversionService;
 import cn.onenine.springframework.utils.ClassUtils;
 
 import java.lang.reflect.Field;
@@ -56,8 +58,21 @@ public class AutowiredAnnotationBeanPostProcessor implements InstantiationAwareB
         for (Field field : fields) {
             Value valueAnnotation = field.getAnnotation(Value.class);
             if (valueAnnotation !=null) {
-                String value = valueAnnotation.value();
-                value = beanFactory.resolveEmbeddedValue(value);
+                Object value = valueAnnotation.value();
+                value = beanFactory.resolveEmbeddedValue((String) value);
+
+                Class<?> sourceType = value.getClass();
+                Class<?> targetType = (Class<?>) TypeUtil.getFieldType(bean.getClass(),beanName);
+                //如果不是引用类型，则进行类型转换
+                if(sourceType != targetType){
+                    ConversionService conversionService = beanFactory.getConversionService();
+                    if (conversionService != null) {
+                        if (conversionService.canConvert(sourceType,targetType)) {
+                            value = conversionService.convert(value,targetType);
+                        }
+                    }
+                }
+
                 BeanUtil.setFieldValue(bean,field.getName(),value);
             }
         }

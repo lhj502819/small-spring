@@ -125,4 +125,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     public void setConversionService(ConversionService conversionService) {
         this.conversionService = conversionService;
     }
+
+    @Override
+    public ConversionService getConversionService() {
+        return conversionService;
+    }
+
+    @Override
+    public boolean containsBean(String beanName) {
+        return containsBeanDefinition(beanName);
+    }
+
+    protected abstract boolean containsBeanDefinition(String beanName);
 }

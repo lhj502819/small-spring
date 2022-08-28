@@ -9,6 +9,7 @@ import cn.onenine.springframework.context.event.ContextClosedEvent;
 import cn.onenine.springframework.context.event.ContextRefreshedEvent;
 import cn.onenine.springframework.context.event.SimpleApplicationEventMulticaster;
 import cn.onenine.springframework.context.support.ApplicationContextAwareProcessor;
+import cn.onenine.springframework.core.convert.ConversionService;
 import cn.onenine.springframework.core.io.DefaultResourceLoader;
 
 import java.util.Collection;
@@ -16,13 +17,14 @@ import java.util.Map;
 
 /**
  * Description：应用上下文抽象类实现
- *      继承{@link DefaultResourceLoader}是为了处理spring.xml配置资源的加载
- *      把定义出来的抽象方法，{@link  #refreshBeanFactory()}和、{@link  #getBeanFactory()}由后面继承此抽象类的其他抽象类实现
+ * 继承{@link DefaultResourceLoader}是为了处理spring.xml配置资源的加载
+ * 把定义出来的抽象方法，{@link  #refreshBeanFactory()}和、{@link  #getBeanFactory()}由后面继承此抽象类的其他抽象类实现
+ *
  * @author li.hongjian
  * @email lhj502819@163.com
  * @since 2022/8/11 21:52
  */
-public abstract class AbstractApplicationContext extends DefaultResourceLoader implements  ConfigurableApplicationContext {
+public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
     public static final String APPLICATION_EVENT_MULTICASTER_BEAN_NAME = "applicationOnEventMulticaster";
 
@@ -30,6 +32,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
     /**
      * 资源准备，BeanFactory、PostProcessor、BeanDefinition
+     *
      * @throws BeansException
      */
     @Override
@@ -49,17 +52,34 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         //5.BeanPostProcessor 需要提前与其他Bean对象实例化之前执行注册操作
         registerBeanPostProcessors(beanFactory);
 
-        //6.提前实例化单例Bean对象
-        beanFactory.preInstantiateSingletons();
-
-        //7.初始化事件发布者
+        //6.初始化事件发布者
         initApplicationEventMulticaster();
 
-        //8.注册事件监听器
+        //7.注册事件监听器
         registerListeners();
+
+        //8.设置类型转换器，提前实例化单例Bean对象
+        finishBeanFactoryInitialization(beanFactory);
 
         //9.发布容器刷新完成事件
         finishRefresh();
+    }
+
+    private void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
+        //获取到所有的类型转换器
+        if (beanFactory.containsBean("conversionService")) {
+            Object conversionService = beanFactory.getBean("conversionService");
+            if (conversionService instanceof ConversionService) {
+                beanFactory.setConversionService((ConversionService) conversionService);
+            }
+        }
+        //提前实例化单例对象
+        beanFactory.preInstantiateSingletons();
+    }
+
+    @Override
+    public boolean containsBean(String beanName) {
+        return getBeanFactory().containsBean(beanName);
     }
 
     private void initApplicationEventMulticaster() {
@@ -68,7 +88,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
         applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
         //将事件广播器Bean注册到单例Bean容器中
-        beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME,applicationEventMulticaster);
+        beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, applicationEventMulticaster);
     }
 
     private void registerListeners() {
@@ -78,7 +98,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
             applicationEventMulticaster.addApplicationLister(applicationListener);
         }
     }
-
 
 
     private void finishRefresh() {
@@ -99,12 +118,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     }
 
 
-
     protected abstract void refreshBeanFactory() throws BeansException;
 
     protected abstract ConfigurableListableBeanFactory getBeanFactory();
 
-    protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory){
+    protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
         Map<String, BeanFactoryPostProcessor> beanFactoryPostProcessorMap = beanFactory.getBeansOfType(BeanFactoryPostProcessor.class);
         for (BeanFactoryPostProcessor beanFactoryPostProcessor : beanFactoryPostProcessorMap.values()) {
             beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
@@ -128,11 +146,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
     @Override
     public Object getBean(String name, Object... args) {
-        return getBeanFactory().getBean(name,args);
+        return getBeanFactory().getBean(name, args);
     }
+
     @Override
     public <T> T getBean(String name, Class<T> type) throws BeansException {
-        return getBeanFactory().getBean(name,type);
+        return getBeanFactory().getBean(name, type);
     }
 
     @Override
