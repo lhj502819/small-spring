@@ -11,6 +11,7 @@
 
 
 ## Spring IOC容器的扩展点
+> 官方文档 https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-extension
 - 自定义Bean：`BeanPostProcessor`
 - 自定义配置元数据：`BeanFactoryPostProcessor`
 - 自定义Bean的初始化逻辑：`FactoryBean`
