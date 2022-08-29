@@ -58,4 +58,8 @@
 同时需要注意我们在使用SPRING时如果不是FACTORYBEAN的实现，也不要将BEAN实例名称设置为`&`开头，会抛出`BeanIsNotAFactoryException`
 
 
+# 参考
+- [手撸Spring-小傅哥](https://github.com/fuzhengwei/small-spring)
+- [mini-spring](https://github.com/DerekYRC/mini-spring)
+- [Spring官方文档](https://spring.io/projects/spring-framework/)
  
