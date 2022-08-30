@@ -1,4 +1,6 @@
-# SMALL-SPRING
+# Small-Spring
+
+从零手写简易版Spring框架。
 
 1. [实现超级简单的依赖注入和依赖查找](https://github.com/lhj502819/small-spring/tree/main/small-spring-step01)
 2. [实现Bean的定义、注册、和获取](https://github.com/lhj502819/small-spring/tree/main/small-spring-step02)
