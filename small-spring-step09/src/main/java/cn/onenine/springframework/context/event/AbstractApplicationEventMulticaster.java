@@ -65,9 +65,10 @@ public abstract class AbstractApplicationEventMulticaster implements Application
      * @param event
      */
     protected boolean supportsEvent(ApplicationListener<ApplicationEvent> applicationListener, ApplicationEvent event) {
+
         Class<? extends ApplicationListener> listenerClass = applicationListener.getClass();
 
-        //按照CglibSubclassingInstantiationStrategy、SimpleInstantiationStrategy不通的实例化类型，需要判断后获取目标Class
+        //如果是Cglib的实例化策略，生成的代理类需要先获取其父类，才是真正的
         Class<?> targetClass = ClassUtils.isCglibSubClass(listenerClass) ? listenerClass.getSuperclass() : listenerClass;
 
         Type genericInterface = targetClass.getGenericInterfaces()[0];

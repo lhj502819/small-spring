@@ -25,7 +25,7 @@
 
 
 ## Spring Bean的生命周期
-整个SPRINGIOC容器的启动是在 `ABSTRACTAPPLICATIONCONTEXT#REFRESH`中执行的，包含了整个BEAN的生命周期
+整个SpringIOC容器的启动是在 `AbstractApplicationContext#refresh`中执行的，包含了整个BEAN的生命周期
  ![IMG.PNG](img.png)
 
 ## BeanFactory和ApplicationContext的区别
