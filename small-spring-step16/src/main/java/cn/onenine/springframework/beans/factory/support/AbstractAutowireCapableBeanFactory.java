@@ -52,9 +52,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 return bean;
             }
 
-            //在填充Bean属性之前，允许BeanPostProcessor修改属性值，比如解析@Autowired和@Value注解
+            //在填充Bean属性之前，允许BeanPostProcessor修改属性值，比如解析@Autowired和@Value注解，其实也是填充Bean属性，只不过是处理注解的自动注入
             applyBeanPostProcessorsBeforeApplyingPropertyValues(beanName, bean, beanDefinition);
-            //填充bean属性
+            //填充bean属性，处理xml配置的属性注入
             applyPropertyValues(beanName, bean, beanDefinition);
             //执行Bean的初始化方法和BeanPostProcessor的前置和后置处理方法
             bean = initializeBean(beanName, bean, beanDefinition);
@@ -65,7 +65,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 
         Object exposedObject = bean;
-        if (beanDefinition.isSingleton()) {
+            if (beanDefinition.isSingleton()) {
             //注册销毁方法
             registerDisposableBeanInNecessary(beanName, bean, beanDefinition);
 
